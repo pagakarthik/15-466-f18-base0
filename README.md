@@ -1,23 +1,72 @@
 # Game Information
-(Note: fill in this portion with information about your game.)
+[Forked from ixchow](https://github.com/ixchow/15-466-f18-base0)
 
-Title: (TODO: your game's title)
+## Development Environment
 
-Author: (TODO: your name)
+Ubunutu 16.04
 
-Design Document: [TODO: name of design document](TODO: link to design document)
+Assets generated in Blender 2.79b
 
-Screen Shot:
+### Title: Save the ancestors
 
-![Screen Shot](screenshot.png)
+### Author: Karthik Paga
 
-Difficulties Encountered:
+### Design Document: [Stonehenge](http://graphics.cs.cmu.edu/courses/15-466-f18/game0-designs/apnayak/)
 
-TODO: write several sentences about any difficulties you may have encountered in creating the game.
+## Screen Shot:
 
-Good Code:
+![Screen Shot](screenshots/save_ancestors.png)
 
-TODO: write a sentence or two about any code you think you did particularly well.
+## Design of Game environment:
+
+![Landing](screenshots/stonehenge_design.png)
+![Locate the duck and alien](screenshots/stonehenge_design_1.png)
+![Kill the alien in RED](screenshots/sthng_design_2.png)
+![But don't kill the duck](screenshots/sthng_design_4.png)
+
+
+## Difficulties Encountered:
+
+Navigating in Blender to acces object properties and change the settings was quite a hassle. 
+Getting used to "shortcuts" in Blnder and actually making the chnages was 10-15 times more time 
+consuming than understanding the code. Once a game compiled, I was not any mor einterested in 
+going back to blender to make "unknown" changes to have a full-fledged game environments. 
+For exmaple, the statues necessary for the stonehenge environment - would always get upscaled no matter
+updated and saved dimensions. 
+
+## What was achieved
+
+    - All the assets are mine! :P
+    - The vertex colors were added and successfully used as part of the game environment
+    - A non default "game environment" that actually compiles and works
+    - The assets are all 3D and have associated colors
+    - Several simple and complex assets have been created
+    - And the requirment to set and use vertex colors, compiled code and a game have been fulfilled.
+
+## Bottlenecks:
+    
+    - If the assets when imported and visualized made sense
+    - (Sorry, but) nothing in Blender really made sense! - "shortcuts" are not shortcuts and the quick access
+        menus are just dumped on the landing page
+
+## What was awesome:
+
+    - ftjam was quite good!
+    - the project itself was setup and managed with directions to setup and use the libraries was hassle free - Thanks Jim.
+
+## Good (Necessary) Code:
+
+    ```
+       mesh.vertex_colors['Col'].data[i].color
+    ```
+
+After having working through the documentation of blender in order to associate the vertex colors and then
+finding a means to access the content for generating the blob, this line of code was an important milestone.
+And also considering that  none of the assets used in the game are the default kind, this line of code has been
+really well thought through and also experimented - for the given code settings. 
+
+References:
+[Blender-python-vertex colors](https://blender.stackexchange.com/questions/909/how-can-i-set-and-get-the-vertex-color-property)
 
 # Using This Base Code
 

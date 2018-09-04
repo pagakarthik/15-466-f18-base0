@@ -113,7 +113,8 @@ Game::Game() {
 		//The blob will be made up of three chunks:
 		// the first chunk will be vertex data (interleaved position/normal/color)
 		// the second chunk will be characters
-		// the third chunk will be an index, mapping a name (range of characters) to a mesh (range of vertex data)
+		// the third chunk will be an index, 
+            // mapping a name (range of characters) to a mesh (range of vertex data)
 
 		//read vertex data:
 		std::vector< Vertex > vertices;
@@ -173,11 +174,20 @@ Game::Game() {
 			}
 			return f->second;
 		};
-		tile_mesh = lookup("Tile");
-		cursor_mesh = lookup("Cursor");
-		doll_mesh = lookup("Doll");
-		egg_mesh = lookup("Egg");
-		cube_mesh = lookup("Cube");
+        model_mesh = lookup("Model");
+        duck_mesh = lookup("Duck");
+        laser_mesh = lookup("Player");
+        cursor_mesh = lookup("Player");
+        statue_1_mesh = lookup("Statue_1");
+        statue_2_mesh = lookup("Statue_2");
+        statue_3_mesh = lookup("Statue_3");
+        alien_mesh = lookup("Alien");
+        grass_mesh = lookup("Grass");
+		// tile_mesh = lookup("Tile");
+		// cursor_mesh = lookup("Cursor");
+		// doll_mesh = lookup("Doll");
+		// egg_mesh = lookup("Egg");
+		// cube_mesh = lookup("Cube");
 	}
 
 	{ //create vertex array object to hold the map from the mesh vertex buffer to shader program attributes:
@@ -206,7 +216,9 @@ Game::Game() {
 	board_rotations.reserve(board_size.x * board_size.y);
 	std::mt19937 mt(0xbead1234);
 
-	std::vector< Mesh const * > meshes{ &doll_mesh, &egg_mesh, &cube_mesh };
+    std::vector< Mesh const * > meshes{ &grass_mesh};
+    // std::vector< Mesh const * > meshes{ &grass_mesh, &alien_mesh, &laser_mesh, &duck_mesh };
+    // std::vector< Mesh const * > meshes{ &grass_mesh, &alien_mesh, &statue_1_mesh, &statue_2_mesh, &statue_3_mesh, &laser_mesh, &duck_mesh, &model_mesh  };
 
 	for (uint32_t i = 0; i < board_size.x * board_size.y; ++i) {
 		board_meshes.emplace_back(meshes[mt()%meshes.size()]);
@@ -360,14 +372,54 @@ void Game::draw(glm::uvec2 drawable_size) {
 
 	for (uint32_t y = 0; y < board_size.y; ++y) {
 		for (uint32_t x = 0; x < board_size.x; ++x) {
-			draw_mesh(tile_mesh,
+			draw_mesh(grass_mesh,
 				glm::mat4(
 					1.0f, 0.0f, 0.0f, 0.0f,
 					0.0f, 1.0f, 0.0f, 0.0f,
 					0.0f, 0.0f, 1.0f, 0.0f,
-					x+0.5f, y+0.5f,-0.5f, 1.0f
+					x+0.5f, y+0.5f,0.0f, 1.0f
 				)
 			);
+			// draw_mesh(grass_mesh,
+			// 	glm::mat4(
+			// 		1.0f, 0.0f, 0.0f, 0.0f,
+			// 		0.0f, 1.0f, 0.0f, 0.0f,
+			// 		0.0f, 0.0f, 1.0f, 0.0f,
+			// 		x+0.5f, y+0.5f,0.0f, 1.0f
+			// 	)
+			// );
+			// draw_mesh(alien_mesh,
+			// 	glm::mat4(
+			// 		1.0f, 0.0f, 0.0f, 0.0f,
+			// 		0.0f, 1.0f, 0.0f, 0.0f,
+			// 		0.0f, 0.0f, 1.0f, 0.0f,
+			// 		x+1.0f, y+1.0f,0.5f, 1.0f
+			// 	)
+			// );
+			// draw_mesh(laser_mesh,
+			// 	glm::mat4(
+			// 		1.0f, 0.0f, 0.0f, 0.0f,
+			// 		0.0f, 1.0f, 0.0f, 0.0f,
+			// 		0.0f, 0.0f, 1.0f, 0.0f,
+			// 		x+1.0f, y+1.0f,0.0f, 1.0f
+			// 	)
+			// );
+			// draw_mesh(statue_1_mesh,
+			// 	glm::mat4(
+			// 		1.0f, 0.0f, 0.0f, 0.0f,
+			// 		0.0f, 1.0f, 0.0f, 0.0f,
+			// 		0.0f, 0.0f, 1.0f, 0.0f,
+			// 		x+0.2f, y+0.2f,0.0f, 1.0f
+			// 	)
+			// );
+			// draw_mesh(statue_2_mesh,
+			// 	glm::mat4(
+			// 		1.0f, 0.0f, 0.0f, 0.0f,
+			// 		0.0f, 1.0f, 0.0f, 0.0f,
+			// 		0.0f, 0.0f, 1.0f, 0.0f,
+			// 		x-1.0f, y-2.0f,0.5f, 1.0f
+			// 	)
+			// );
 			draw_mesh(*board_meshes[y*board_size.x+x],
 				glm::mat4(
 					1.0f, 0.0f, 0.0f, 0.0f,

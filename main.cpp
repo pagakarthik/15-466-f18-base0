@@ -11,6 +11,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <math.h>
 
 //...and for c++ standard library functions:
 #include <chrono>
@@ -23,7 +24,7 @@
 int main(int argc, char **argv) {
 	struct {
 		//TODO: this is where you set the title and size of your game window
-		std::string title = "TODO: Game Title";
+		std::string title = "Save the Ancestors";
 		glm::uvec2 size = glm::uvec2(640, 400);
 	} config;
 
